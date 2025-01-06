@@ -18,8 +18,8 @@ int main(int argc, char *argv[0]){
         exit(2);
     } 
 
-    unsigned int largura = atoi(argv[1]); 
-    unsigned int altura = atoi(argv[2]);
+    int largura = atoi(argv[1]); 
+    int altura = atoi(argv[2]);
 
     int **pm = NULL;
 
