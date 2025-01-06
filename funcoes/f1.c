@@ -6,7 +6,7 @@
 
 //  ./program.e <largura> <altura>
 
-int main(int argc, char *argv[0]){
+int main(int argc, char *argv[]){
 
     if (argc!=3){
         printf("Use:\n\t\t %s <largura> <altura>\n\n",argv[0]);
