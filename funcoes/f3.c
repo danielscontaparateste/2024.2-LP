@@ -9,6 +9,7 @@
 int **alocarMemoriaMatriz(int, int);
 void popularMatriz(int **, int, int);
 void imprimirMatriz(int **pm, const int, const int);
+void multMatPonto(int **, int **, int **, int, int);
 
 int main(int argc, char **argv){
 
@@ -20,18 +21,45 @@ int main(int argc, char **argv){
     int largura = atoi(*(argv+1)); 
     int altura = atoi(*(argv+2));
 
-    int **matriz = alocarMemoriaMatriz(largura, altura);
-    if (!matriz){
+    //#####
+
+    int **matrizA = alocarMemoriaMatriz(largura, altura);
+    if (!matrizA){
         puts("Memória Indisponível");
         exit(1);
     }
     
     srand(time(NULL));
-    popularMatriz(matriz, largura, altura);
+    popularMatriz(matrizA, largura, altura);
     
-    puts("Matriz Gerada");
-    imprimirMatriz(matriz, largura, altura);
+    puts("Matriz Gerada A");
+    imprimirMatriz(matrizA, largura, altura);
+
+    //#####
+
+    int **matrizB = alocarMemoriaMatriz(largura, altura);
+    if (!matrizB){
+        puts("Memória Indisponível");
+        exit(1);
+    }    
+        
+    popularMatriz(matrizB, largura, altura);
+    puts("Matriz Gerada B");
+    imprimirMatriz(matrizB, largura, altura);
     
+    //#####
+
+    int **matrizC = alocarMemoriaMatriz(largura, altura);
+    if (!matrizC){
+        puts("Memória Indisponível");
+        exit(1);
+    }
+
+    multMatPonto(matrizA, matrizB, matrizC, largura, altura);
+
+    puts("Matriz Resultante C");
+    imprimirMatriz(matrizC, largura, altura);
+
     return 0;
     
 }
@@ -64,6 +92,14 @@ void imprimirMatriz(int **pm, const int largura, const int altura){
             printf("%4d",*(*(pm+k) + j));
         }
         printf("\n");
+    }
+}
+
+void multMatPonto(int **a, int **b, int **c, int larg, int alt){
+    for (int k=0; k<alt; k++){
+        for (int j=0; j<larg; j++){
+            *(*(c+k)+j) = *(*(a+k)+j) * *(*(b+k)+j);
+        }
     }
 }
 
